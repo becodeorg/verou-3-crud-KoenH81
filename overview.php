@@ -21,6 +21,19 @@
             <li><?= $card['price'] ?></li>
         <?php endforeach; ?>
     </ul>
+    <form method="POST">
+        <label for="id">ID</label>
+        <input type="text" id="id" name="id">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name">
+        <label for="HP">HP</label>
+        <input type="text" id="HP" name="HP">
+        <label for="foil">foil</label>
+        <input type="text" id="foil" name="foil">
+        <label for="price">price</label>
+        <input type="text" id="price" name="price">
+        <input type="submit">
+    </form>
 
 </body>
 
