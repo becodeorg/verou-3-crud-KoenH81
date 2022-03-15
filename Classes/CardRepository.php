@@ -15,6 +15,10 @@ class CardRepository
 
     public function create(): void
     {
+        $query = "INSERT INTO pokemon_cards (`name`, HP, foil, price) VALUES ({$_GET[name]}, {$_GET[HP]}, {$_GET[foil]}, {$_GET[price]})";
+        $this->databaseManager->connection->query($query);
+        //$result =  $this->databaseManager->connection->query($query);
+        //return $result;
     }
 
     // Get one

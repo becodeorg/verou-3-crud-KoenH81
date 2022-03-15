@@ -30,7 +30,7 @@ $action = $_GET['action'] ?? null;
 // This system will help you to only execute the code you want, instead of all of it (or complex if statements)
 switch ($action) {
     case 'create':
-        $this->create();
+        $cardRepository->create();
         break;
     default:
         //$this->overview();

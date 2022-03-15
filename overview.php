@@ -21,7 +21,7 @@
             <li><?= $card['price'] ?></li>
         <?php endforeach; ?>
     </ul>
-    <form method="POST">
+    <form method="">
         <label for="id">ID</label>
         <input type="text" id="id" name="id">
         <label for="name">Name</label>
@@ -33,6 +33,8 @@
         <label for="price">price</label>
         <input type="text" id="price" name="price">
         <input type="submit">
+        <a href="?action=Create">Create</a><br>
+        <a href="?action=Search">Search</a>
     </form>
 
 </body>
