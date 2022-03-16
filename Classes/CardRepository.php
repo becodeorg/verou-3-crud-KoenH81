@@ -15,10 +15,8 @@ class CardRepository
 
     public function create(): void
     {
-        $query = "INSERT INTO pokemon_cards (`name`, HP, foil, price) VALUES ({$_GET[name]}, {$_GET[HP]}, {$_GET[foil]}, {$_GET[price]})";
+        $query = "INSERT INTO pokemon_cards (`name`, HP, foil, price) VALUES ('{$_POST['name']}', '{$_POST['HP']}', '{$_POST['foil']}', '{$_POST['price']}')";
         $this->databaseManager->connection->query($query);
-        //$result =  $this->databaseManager->connection->query($query);
-        //return $result;
     }
 
     // Get one
@@ -34,17 +32,21 @@ class CardRepository
         $this->databaseManager->connection->query($query);
         $result =  $this->databaseManager->connection->query($query);
         return $result;
-        // return [
-        //     ['name' => 'dummy one'],
-        //     ['name' => 'dummy two'],
-        // ];
 
         // We get the database connection first, so we can apply our queries with it
         // return $this->databaseManager->connection-> (runYourQueryHere)
     }
 
-    public function update(): void
+    public function update(): array
     {
+        $cardId = $_GET['card_id'];
+        $query = "SELECT id,`name`, HP, foil, price FROM `pokemon_cards` WHERE id= '{$_GET['card_id']}'";
+        $this->databaseManager->connection->query($query);
+        $result =  $this->databaseManager->connection->query($query);
+        $card = $result->fetch();
+        require 'edit.php';
+        $query = "UPDATE `pokemon` SET '{$_POST['edit']}' = '{$_POST['value']}' WHERE id = '{$_GET['card_id']}'";
+        return $card;
     }
 
     public function delete(): void

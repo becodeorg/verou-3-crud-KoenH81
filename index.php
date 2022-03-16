@@ -16,12 +16,6 @@ require_once 'classes/CardRepository.php';
 $databaseManager = new DatabaseManager($config['host'], $config['user'], $config['password'], $config['dbname']);
 $databaseManager->connect();
 
-// This example is about a Pokémon card collection
-// Update the naming if you'd like to work with another collection
-$cardRepository = new CardRepository($databaseManager);
-$cards = $cardRepository->get();
-var_dump($cards);
-
 // Get the current action to execute
 // If nothing is specified, it will remain empty (home should be loaded)
 $action = $_GET['action'] ?? null;
@@ -30,22 +24,43 @@ $action = $_GET['action'] ?? null;
 // This system will help you to only execute the code you want, instead of all of it (or complex if statements)
 switch ($action) {
     case 'create':
-        $cardRepository->create();
+        create($databaseManager);
+        break;
+    case 'edit':
+        edit($databaseManager);
         break;
     default:
-        //$this->overview();
-        require 'overview.php';
+        overview($databaseManager);
         break;
 }
 
-function overview()
+function overview($databaseManager)
 {
     // Load your view
     // Tip: you can load this dynamically and based on a variable, if you want to load another view
+    // This example is about a Pokémon card collection
+    // Update the naming if you'd like to work with another collection
+    $cardRepository = new CardRepository($databaseManager);
+    $cards = $cardRepository->get();       
     require 'overview.php';
 }
 
-function create()
+function create($databaseManager)
 {
-    // TODO: provide the create logic
+    $cardRepository = new CardRepository($databaseManager);
+    $cards = $cardRepository->get();
+    if(isset($_POST['name'])){
+        var_dump($_POST);
+        $cardRepository->create();}
+    require 'create.php';
+}
+function edit($databaseManager){
+    $cardRepository = new CardRepository($databaseManager);
+    $cards = $cardRepository->get();
+    if(isset($_POST['value'])){
+        $cardRepository->update();
+        echo 'damn';}
+    require 'edit.php';
+    echo 'WHYYYY?';
+
 }

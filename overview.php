@@ -12,31 +12,19 @@
 
     <h1>Goodcard - track your collection of Pokémon cards</h1>
 
+
+
     <ul>
         <?php foreach ($cards as $card) : ?>
-            <li><?= $card['id'] ?></li>
+            <li><?= $card['ID'] ?><a href="index.php?action=edit&card_id=<?= $card['ID'] ?>">edit</a></li>
             <li><?= $card['name'] ?></li>
             <li><?= $card['HP'] ?></li>
             <li><?= $card['foil'] ?></li>
             <li><?= $card['price'] ?></li>
         <?php endforeach; ?>
     </ul>
-    <form method="">
-        <label for="id">ID</label>
-        <input type="text" id="id" name="id">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name">
-        <label for="HP">HP</label>
-        <input type="text" id="HP" name="HP">
-        <label for="foil">foil</label>
-        <input type="text" id="foil" name="foil">
-        <label for="price">price</label>
-        <input type="text" id="price" name="price">
-        <input type="submit">
-        <a href="?action=Create">Create</a><br>
-        <a href="?action=Search">Search</a>
-    </form>
 
+    <a href="index.php?action=create">create</a>
 </body>
 
 </html>
