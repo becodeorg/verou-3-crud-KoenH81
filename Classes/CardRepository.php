@@ -40,12 +40,15 @@ class CardRepository
     public function update(): array
     {
         $cardId = $_GET['card_id'];
-        $query = "SELECT id,`name`, HP, foil, price FROM `pokemon_cards` WHERE id= '{$_GET['card_id']}'";
+        $query = "SELECT id,`name`, HP, foil, price FROM `pokemon_cards` WHERE id= '{$cardId}'";
         $this->databaseManager->connection->query($query);
         $result =  $this->databaseManager->connection->query($query);
         $card = $result->fetch();
         require 'edit.php';
-        $query = "UPDATE `pokemon` SET '{$_POST['edit']}' = '{$_POST['value']}' WHERE id = '{$_GET['card_id']}'";
+        if ($_POST['value'] != 'value') {
+            $query = "UPDATE `pokemon_cards` SET {$_POST['edit']} = '{$_POST['value']}' WHERE id = '{$cardId}'";
+            $this->databaseManager->connection->query($query);
+        };
         return $card;
     }
 

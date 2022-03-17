@@ -14,14 +14,13 @@
 
     <ul>
         <?php foreach ($cards as $card) : ?>
-            <li><?= $card['ID'] ?></li>
             <li><?= $card['name'] ?></li>
             <li><?= $card['HP'] ?></li>
             <li><?= $card['foil'] ?></li>
             <li><?= $card['price'] ?></li>
         <?php endforeach; ?>
     </ul>
-    <form method="post" action="index.php?action=create" >
+    <form method="post" action="index.php?action=create">
         <label for="name">Name</label>
         <input type="text" id="name" name="name">
         <label for="HP">HP</label>

@@ -41,7 +41,7 @@ function overview($databaseManager)
     // This example is about a Pokémon card collection
     // Update the naming if you'd like to work with another collection
     $cardRepository = new CardRepository($databaseManager);
-    $cards = $cardRepository->get();       
+    $cards = $cardRepository->get();
     require 'overview.php';
 }
 
@@ -49,18 +49,19 @@ function create($databaseManager)
 {
     $cardRepository = new CardRepository($databaseManager);
     $cards = $cardRepository->get();
-    if(isset($_POST['name'])){
+    if (isset($_POST['name'])) {
         var_dump($_POST);
-        $cardRepository->create();}
+        $cardRepository->create();
+    }
     require 'create.php';
 }
-function edit($databaseManager){
+function edit($databaseManager)
+{
     $cardRepository = new CardRepository($databaseManager);
     $cards = $cardRepository->get();
-    if(isset($_POST['value'])){
-        $cardRepository->update();
-        echo 'damn';}
-    require 'edit.php';
-    echo 'WHYYYY?';
-
+    //if (isset($_POST['value'])) {
+    $cardRepository->update();
+    //    echo 'damn';
+    //}
+    //echo 'WHYYYY?';
 }
