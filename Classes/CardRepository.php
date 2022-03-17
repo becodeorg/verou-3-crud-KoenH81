@@ -54,5 +54,20 @@ class CardRepository
 
     public function delete(): void
     {
+        $cardId = $_GET['card_id'];
+        $query = "SELECT id,`name`, HP, foil, price FROM `pokemon_cards` WHERE id= '{$cardId}'";
+        $this->databaseManager->connection->query($query);
+        $result =  $this->databaseManager->connection->query($query);
+        $card = $result->fetch();
+        require 'delete.php';
+        var_dump($_POST);
+        if ($_POST['yes-no'] === 'no') {
+            header("location: index.php");
+        };
+        if ($_POST['yes-no'] === 'yes') {
+            $query = "DELETE FROM `pokemon_cards` WHERE id= '{$cardId}'";
+            $this->databaseManager->connection->query($query);
+            header("location: index.php");
+        };
     }
 }

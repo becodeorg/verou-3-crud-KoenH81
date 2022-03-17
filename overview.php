@@ -16,7 +16,7 @@
 
     <ul>
         <?php foreach ($cards as $card) : ?>
-            <li><?= $card['id'] ?><a href="index.php?action=edit&card_id=<?= $card['id'] ?>">edit</a></li>
+            <li><?= $card['id'] ?><a href="index.php?action=edit&card_id=<?= $card['id'] ?>">edit</a> <a href="index.php?action=delete&card_id=<?= $card['id'] ?>">delete</a></li>
             <li><?= $card['name'] ?></li>
             <li><?= $card['HP'] ?></li>
             <li><?= $card['foil'] ?></li>

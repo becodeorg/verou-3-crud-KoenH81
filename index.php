@@ -29,6 +29,9 @@ switch ($action) {
     case 'edit':
         edit($databaseManager);
         break;
+    case 'delete':
+        delete($databaseManager);
+        break;
     default:
         overview($databaseManager);
         break;
@@ -59,9 +62,11 @@ function edit($databaseManager)
 {
     $cardRepository = new CardRepository($databaseManager);
     $cards = $cardRepository->get();
-    //if (isset($_POST['value'])) {
     $cardRepository->update();
-    //    echo 'damn';
-    //}
-    //echo 'WHYYYY?';
+}
+function delete($databaseManager)
+{
+    $cardRepository = new CardRepository($databaseManager);
+    $cards = $cardRepository->get();
+    $cardRepository->delete();
 }
